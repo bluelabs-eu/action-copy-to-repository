@@ -1,0 +1,23 @@
+name: "Copy To Repository Action"
+author: "bluelabs.eu"
+branding:
+  icon: "copy"
+  color: "green"
+description: "Copy and Push files/directories to another Github repository."
+inputs:
+  github_token:
+    description: "Github token to use"
+    required: true
+  destination_repository:
+    description: "Destination repository"
+    required: true
+  copy_operations:
+    description: "Space-delimited list of copy operations to perform"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.github_token }}
+    - ${{ inputs.destination_repository }}
+    - ${{ inputs.copy_operations }}
